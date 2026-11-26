@@ -49,8 +49,9 @@
     }
   }
 
-  // keep link text / unread badges clear of the toggle
-  .sct-has-children > .sidebar-section-link {
-    padding-right: 2.25em;
+  // reserve a gutter on the <li> so the whole link (incl. unread badge)
+  // ends before the toggle instead of running underneath it
+  .sct-item.sct-has-children {
+    padding-right: 2em;
   }
 }
