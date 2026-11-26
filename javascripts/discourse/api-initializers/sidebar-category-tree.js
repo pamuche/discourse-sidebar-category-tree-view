@@ -131,6 +131,21 @@ export default apiInitializer((api) => {
           toggle.setAttribute("aria-label", expanded ? "Collapse" : "Expand");
         }
 
+        // Show only the number of the "N unread"/"N new" badge. The text node
+        // belongs to Glimmer, so we mirror the count into an attribute and
+        // swap the visible text via CSS instead of editing it.
+        const badge = li.querySelector(".sidebar-section-link-content-badge");
+        if (badge) {
+          const count = badge.textContent.match(/\d+/)?.[0];
+          if (count) {
+            if (badge.dataset.sctCount !== count) {
+              badge.dataset.sctCount = count;
+            }
+          } else {
+            delete badge.dataset.sctCount;
+          }
+        }
+
         kids.forEach((kid) => walk(kid, depth + 1, hidden || !expanded));
       };
 
@@ -163,7 +178,7 @@ export default apiInitializer((api) => {
         apply();
       });
     });
-    observer.observe(sidebar, { childList: true, subtree: true });
+    observer.observe(sidebar, { childList: true, subtree: true, characterData: true });
   }
 
   api.onPageChange(() => {
