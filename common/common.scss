@@ -1,7 +1,10 @@
 .sidebar-section[data-section-name="categories"] {
-  [data-sct-list] {
+  // the hamburger dropdown (small screens) lays links out in a two-column
+  // grid; a tree needs one column, so override it with higher specificity
+  .sidebar-section-content[data-sct-list][data-sct-list] {
     display: flex;
     flex-direction: column;
+    grid-template-columns: none;
   }
 
   [data-sct-item] {
