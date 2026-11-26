@@ -1,0 +1,56 @@
+.sidebar-section[data-section-name="categories"] {
+  .sct-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sct-item {
+    position: relative;
+    padding-left: calc(var(--sct-depth, 0) * var(--sct-indent, 14px));
+
+    &.sct-hidden {
+      display: none;
+    }
+  }
+
+  .sct-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0.25em;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 1.75em;
+    height: 1.75em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-medium);
+    border-radius: var(--d-border-radius, 4px);
+
+    &::before {
+      content: "";
+      width: 0.4em;
+      height: 0.4em;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+      transition: transform 0.15s ease;
+    }
+
+    &[aria-expanded="true"]::before {
+      transform: rotate(45deg);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--primary);
+      background: var(--primary-low);
+    }
+  }
+
+  // keep link text / unread badges clear of the toggle
+  .sct-has-children > .sidebar-section-link {
+    padding-right: 2.25em;
+  }
+}

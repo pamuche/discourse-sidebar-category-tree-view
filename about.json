@@ -1,0 +1,8 @@
+{
+  "name": "Sidebar Category Tree View",
+  "component": true,
+  "about_url": null,
+  "license_url": null,
+  "minimum_discourse_version": "3.2.0",
+  "modifiers": {}
+}

@@ -1,0 +1,8 @@
+expanded_by_default:
+  default: false
+  description: "Expand all parent categories in the sidebar until a user collapses them."
+indent_per_level:
+  default: 14
+  min: 0
+  max: 40
+  description: "Indentation (px) per subcategory level."
