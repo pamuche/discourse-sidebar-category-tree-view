@@ -57,6 +57,9 @@
 
   .sidebar-section-link-content-badge[data-sct-count] {
     font-size: 0;
+    // core sets max-width in em, which becomes 0 with font-size: 0
+    max-width: none;
+    overflow: visible;
 
     &::after {
       content: attr(data-sct-count);

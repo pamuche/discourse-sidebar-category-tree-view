@@ -163,10 +163,9 @@ export default apiInitializer((api) => {
 
   function observe() {
     observer?.disconnect();
-    const sidebar = document.querySelector(".sidebar-wrapper, .sidebar-container");
-    if (!sidebar) {
-      return;
-    }
+    // body, not the sidebar wrapper: on narrow screens the sidebar lives in
+    // the hamburger dropdown, which is rendered elsewhere and on demand
+    const sidebar = document.body;
     let scheduled = false;
     observer = new MutationObserver(() => {
       if (applying || scheduled) {
