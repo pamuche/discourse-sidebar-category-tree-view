@@ -60,7 +60,7 @@
 
     &::after {
       content: attr(data-sct-count);
-      font-size: var(--font-down-1);
+      font-size: var(--font-down-1-rem, 0.875rem);
     }
   }
 }
