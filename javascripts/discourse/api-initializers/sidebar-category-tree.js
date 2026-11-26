@@ -101,10 +101,12 @@ export default apiInitializer((api) => {
         const expanded = hasKids && isExpanded(id);
 
         li.style.order = String(order++);
-        li.classList.add("sct-item");
-        li.classList.toggle("sct-hidden", hidden);
-        li.classList.toggle("sct-has-children", hasKids);
-        li.classList.toggle("sct-expanded", expanded);
+        // data-* attributes: Discourse re-renders the <li> class attribute
+        // (e.g. on hover), which would wipe classes we add
+        li.dataset.sctItem = "";
+        li.toggleAttribute("data-sct-hidden", hidden);
+        li.toggleAttribute("data-sct-has-children", hasKids);
+        li.toggleAttribute("data-sct-expanded", expanded);
         li.style.setProperty("--sct-depth", depth);
         li.style.setProperty("--sct-indent", `${indent}px`);
 
@@ -135,10 +137,10 @@ export default apiInitializer((api) => {
       roots.sort(byDom).forEach((id) => walk(id, 0, false));
 
       // Non-category items (e.g. "All categories") stay at the end
-      list.querySelectorAll(":scope > li:not(.sct-item)").forEach((li) => {
+      list.querySelectorAll(":scope > li:not([data-sct-item])").forEach((li) => {
         li.style.order = String(order++);
       });
-      list.classList.add("sct-list");
+      list.dataset.sctList = "";
     } finally {
       applying = false;
     }

@@ -1,14 +1,14 @@
 .sidebar-section[data-section-name="categories"] {
-  .sct-list {
+  [data-sct-list] {
     display: flex;
     flex-direction: column;
   }
 
-  .sct-item {
+  [data-sct-item] {
     position: relative;
     padding-left: calc(var(--sct-depth, 0) * var(--sct-indent, 14px));
 
-    &.sct-hidden {
+    &[data-sct-hidden] {
       display: none;
     }
   }
@@ -51,7 +51,7 @@
 
   // reserve a gutter on the <li> so the whole link (incl. unread badge)
   // ends before the toggle instead of running underneath it
-  .sct-item.sct-has-children {
+  [data-sct-item][data-sct-has-children] {
     padding-right: 2em;
   }
 }
